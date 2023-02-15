@@ -24,13 +24,6 @@ int main()
 	double dubArray[DUB_ARRAY_SIZE]{55.5,66.6,45.7,88.8,99.9};
 	float average = 0.0f;
 	
-	
-
-
-
-
-
-
 	//function 1
 	std::cout << "enter number 1: ";
 	std::cin >> num1;
@@ -42,8 +35,9 @@ int main()
 	//function 2
 	std::cout << "Enter a positive number: ";
 	std::cin >> positiveNum;
+	std::cout << "The numberbefore the function is: " << positiveNum << std::endl; 
 	makeNegative(positiveNum);
-	std::cout << "The number as a negative is: " << positiveNum << std::endl;
+	std::cout << "The number after the function is: " << positiveNum << std::endl;
 
 	//function 3
 	lowest = findLowest(numArray, ARRAY_SIZE);
@@ -55,25 +49,32 @@ int main()
 
 	//function 5
 	reverseArray(dubArray);
+	for (int i = 0; i < DUB_ARRAY_SIZE; i++)
+	{
+		std::cout << "\n" << dubArray[i];
+	}
 
+	return 0;
 }
 
+//1 triples two floats called by address
 void tripleIt(float & t_num1,  float & t_num2)
 {
 	t_num1 *= 3.0f;
 	t_num2 *= 3.0f;
 }
 
+//2 makes a integer called by address negative 
 void makeNegative(int& t_num)
 {
-	if (t_num < 0);
-	else
+	if (t_num > 0)
 	{
 		t_num *= -1;
 	}
 
 }
 
+//3 find the lowest number in an array
 int findLowest(int t_array[], const int t_ARRAY_SIZE)
 {
 	int lowest = 0;
@@ -91,6 +92,7 @@ int findLowest(int t_array[], const int t_ARRAY_SIZE)
 	return lowest;
 }
 
+//4
 float calAverage(double t_array[])
 {
 	float average = 0.0f;
@@ -103,11 +105,22 @@ float calAverage(double t_array[])
 	return average;
 }
 
+//5
 void reverseArray(double t_array[])
 {
-	for (int i = DUB_ARRAY_SIZE - 1; i >= 0 ; i--)
+
+	double localArray[DUB_ARRAY_SIZE];// temporary array 
+	int arrayPos = DUB_ARRAY_SIZE -1;
+
+	for (int i = 0; i < DUB_ARRAY_SIZE; i--)
 	{
-		std::cout << "\n" << t_array[i] << "\n";
+		localArray[i] = t_array[i];
 	}
+	for (int i = 0; i < DUB_ARRAY_SIZE; i++)
+	{
+		t_array[arrayPos] = localArray[i];	
+		arrayPos--;
+	}
+
 }
 
